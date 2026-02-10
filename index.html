@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffebee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        h1 { color: #d32f2f; margin-bottom: 10px; }
+        p { font-size: 1.2rem; color: #555; }
+        .container { position: relative; height: 300px; width: 100%; }
+        .buttons { margin-top: 20px; }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #yesBtn { background-color: #4caf50; color: white; margin-right: 10px; }
+        #noBtn { background-color: #f44336; color: white; position: absolute; }
+        #celebration { display: none; }
+        img { border-radius: 15px; max-width: 300px; }
+    </style>
+</head>
+<body>
+
+    <div id="question-screen">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <p>Celebrating on: <strong>Friday, February 13th</strong></p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXByZndicXN6YndicXN6YndicXN6YndicXN6YndicXN6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpN61i/giphy.gif" alt="Cute gif">
+        
+        <div class="buttons">
+            <button id="yesBtn">Yes!</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="celebration">
+        <h1>YAY! See you on the 13th! 🥰</h1>
+        <p>I'll be counting down the minutes.</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXByZndicXN6YndicXN6YndicXN6YndicXN6YndicXN6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/lTQF0ODLLJHza/giphy.gif" alt="Happy gif">
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionScreen = document.getElementById('question-screen');
+        const celebration = document.getElementById('celebration');
+
+        // Logic to move the "No" button
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        // Optional: Make the Yes button grow when she tries to click No
+        noBtn.addEventListener('mouseenter', () => {
+            let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 5) + 'px';
+            yesBtn.style.padding = (currentSize + 2) + 'px ' + (currentSize * 2) + 'px';
+        });
+
+        yesBtn.addEventListener('click', () => {
+            questionScreen.style.display = 'none';
+            celebration.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
